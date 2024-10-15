@@ -1,0 +1,10 @@
+@import '../../../styles/glodal.scss';
+
+.button {
+  display: inline-block;
+  @include border ($width: 1px, $color: $color-background, $radius: 8px);
+  padding: 8px 16px;
+  min-width: 81px;
+  height: 38px;
+  color: $color-background;
+}

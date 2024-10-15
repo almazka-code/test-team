@@ -1,0 +1,28 @@
+@import '../../../styles/glodal.scss';
+
+.wrapper {
+  display: flex;
+  gap: 30px;
+}
+
+.avatar {
+  width: 187px;
+  height: 187px;
+  border-radius: 50%;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: $color-light;
+}
+
+.name {
+  @extend %main-title;
+  margin-bottom: 15px;
+}
+
+.post {
+  font-size: 32px;
+}
