@@ -1,7 +1,5 @@
-
+import styles from './Profile.module.scss';
 
 export const Profile: React.FC = () => {
-  return (
-    <div>Profile</div>
-  )
-}
+  return <div>Profile</div>;
+};

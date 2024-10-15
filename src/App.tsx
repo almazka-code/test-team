@@ -3,7 +3,7 @@ import './styles/main.scss';
 
 import { Header } from './components/layout/Header/Header';
 import { Home } from './pages/Home/Home';
-import { Profile } from './pages/Profile/Profile';
+// import { Profile } from './pages/Profile/Profile';
 
 function App() {
   return (
@@ -14,6 +14,7 @@ function App() {
           <Route path="/" element={<Home />}/>
           <Route path="/profile" element={<Profile />}/>
         </Routes> */}
+        <Home />
       </main>
     </div>
   );

@@ -1,4 +1,7 @@
+@import '../../styles/glodal.scss';
+
 .grid {
+  @extend %container;
   display: grid;
   grid-template-columns: repeat(auto-fill, 305px);
   gap: 20px;

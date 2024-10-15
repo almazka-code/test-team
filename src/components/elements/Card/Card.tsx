@@ -9,7 +9,7 @@ type CardProps = {
 export const Card: React.FC<CardProps> = ({ firstName, lastName, avatar }) => {
   return (
     <li className={styles.card}>
-      <div>
+      <div className={styles.wrapper}>
         <img className={styles.avatar} src={avatar} alt={firstName + ' ' + lastName} />
       </div>
       <p className={styles.name}>{firstName + ' ' + lastName}</p>
