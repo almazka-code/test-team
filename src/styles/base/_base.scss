@@ -1,4 +1,4 @@
-@import "./../glodal.scss";
+@import './../glodal.scss';
 
 html {
   box-sizing: border-box;
@@ -13,7 +13,7 @@ html {
 }
 
 body {
-  min-width: 320px;
+  min-width: 375px;
   height: 100%;
   @extend %font-primary;
   @include font($size: 16px);
@@ -39,7 +39,7 @@ button {
 }
 
 input {
-  outline:none;
+  outline: none;
 }
 
 fieldset {

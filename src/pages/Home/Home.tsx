@@ -1,7 +1,5 @@
-
+import styles from './Home.module.scss';
 
 export const Home: React.FC = () => {
-  return (
-    <div>Home</div>
-  )
-}
+  return <ul className={styles.grid}></ul>;
+};
