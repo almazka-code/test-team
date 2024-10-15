@@ -1,0 +1,23 @@
+%transition {
+  transition: all 0.3s ease;
+}
+
+%font-primary {
+  font-family: "Roboto", Arial, sans-serif;
+}
+
+%flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+%container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 80px;
+}
+
+%main-title {
+  @include font($weight: 400, $size: 64px);
+}

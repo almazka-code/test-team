@@ -1,8 +1,13 @@
 import React from 'react';
 
+import './styles/main.scss';
+import { Header } from './components/layout/Header/Header';
+
 function App() {
   return (
-    <div className="App"></div>
+    <div className="wrapper">
+      <Header />
+    </div>
   );
 }
 
