@@ -17,6 +17,7 @@ export const Home: React.FC = () => {
 
   return (
     <div>
+      <h1 className={styles.title}>Тестовое задание</h1>
       {/* {status === 'loading' && <Skeleton />} */}
       {status === 'success' && (
         <ul className={styles.grid}>

@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
+import { useDispatch } from 'react-redux';
 import users from './slices/usersSlice';
 import card from './slices/cardSlice';
-import { useDispatch } from 'react-redux';
 
 export const store = configureStore({
   reducer: {

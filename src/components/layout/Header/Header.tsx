@@ -13,8 +13,8 @@ export const Header: React.FC = () => {
   return (
     <header className={styles.header}>
       <div className={styles.wrapper}>
-        {location.pathname !== '/' && (
-          <Link to="./">
+        {location.pathname !== '/users' && (
+          <Link to="./users">
             <Button className={styles.back} text="Назад" />
           </Link>
         )}
@@ -28,7 +28,7 @@ export const Header: React.FC = () => {
           </div>
         )}
 
-        {location.pathname !== '/' && (
+        {location.pathname !== '/users' && (
           <ProfileName firstName={firstName} lastName={lastName} post="Партнер" avatar={avatar} />
         )}
 

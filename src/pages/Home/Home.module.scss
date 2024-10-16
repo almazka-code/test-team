@@ -7,3 +7,7 @@
   gap: 20px;
   justify-content: center;
 }
+
+.title {
+  @extend %hidden;
+}
