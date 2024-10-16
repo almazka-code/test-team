@@ -1,27 +1,37 @@
 import { ProfileName } from '../../elements/ProfileName/ProfileName';
 import { Button } from '../../ui/Button/Button';
 import styles from './Header.module.scss';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../redux/store';
 
 export const Header: React.FC = () => {
+  const { firstName, lastName, avatar } = useSelector((state: RootState) => state.card);
+
+  const location = useLocation();
+
   return (
     <header className={styles.header}>
       <div className={styles.wrapper}>
-        <Button className={styles.back} text="Назад" />
-        <div className={styles.content}>
-          <h2 className={styles.title}>Наша команда</h2>
-          <p className={styles.text}>
-            Это опытные специалисты, хорошо разбирающиеся во всех задачах, которые ложатся на их
-            плечи, и умеющие находить выход из любых, даже самых сложных ситуаций.{' '}
-          </p>
-        </div>
+        {location.pathname !== '/' && (
+          <Link to="./">
+            <Button className={styles.back} text="Назад" />
+          </Link>
+        )}
+        {location.pathname !== '/profile' && (
+          <div className={styles.content}>
+            <h2 className={styles.title}>Наша команда</h2>
+            <p className={styles.text}>
+              Это опытные специалисты, хорошо разбирающиеся во всех задачах, которые ложатся на их
+              плечи, и умеющие находить выход из любых, даже самых сложных ситуаций.
+            </p>
+          </div>
+        )}
 
-        {/* <ProfileName
-          firstName="Артур"
-          lastName="Королёв"
-          post="Партнер"
-          avatar="https://reqres.in/img/faces/8-image.jpg"
-        /> */}
+        {location.pathname !== '/' && (
+          <ProfileName firstName={firstName} lastName={lastName} post="Партнер" avatar={avatar} />
+        )}
+
         <Button className={styles.exit} text="Выход" />
       </div>
     </header>

@@ -7,6 +7,7 @@ interface UserItem {
   first_name: string;
   last_name: string;
   avatar: string;
+  email: string;
 }
 
 interface ApiResponse {
@@ -64,5 +65,4 @@ export const usersSlice = createSlice({
 });
 
 export const usersSelector = (state: RootState) => state.users;
-
 export default usersSlice.reducer;

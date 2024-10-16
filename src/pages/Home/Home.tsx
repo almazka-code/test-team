@@ -2,7 +2,7 @@ import styles from './Home.module.scss';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../../redux/store';
-import { fetchUsers, usersSelector } from '../../redux/slices/userSlice';
+import { fetchUsers, usersSelector } from '../../redux/slices/usersSlice';
 
 import { Card } from '../../components/elements/Card/Card';
 
@@ -15,9 +15,6 @@ export const Home: React.FC = () => {
     dispatch(fetchUsers());
   }, []);
 
-  console.log('Status:', status);
-  console.log('Items:', items);
-
   return (
     <div>
       {/* {status === 'loading' && <Skeleton />} */}
@@ -29,6 +26,7 @@ export const Home: React.FC = () => {
               firstName={user.first_name}
               lastName={user.last_name}
               avatar={user.avatar}
+              email={user.email}
             />
           ))}
         </ul>

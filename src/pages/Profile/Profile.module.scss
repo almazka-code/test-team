@@ -1,0 +1,39 @@
+@import '../../styles/glodal.scss';
+
+.wrapper {
+  @extend %container;
+  padding-left: 190px;
+  padding-right: 190px;
+  display: flex;
+  gap: 140px;
+}
+
+.text {
+  max-width: 620px;
+}
+
+.paragraph {
+  margin-bottom: 23px;
+}
+
+.item {
+  display: flex;
+  gap: 5px;
+  margin-bottom: 22px;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  &.mail {
+    background-image: url('../../assets/svg/mail.svg');
+  }
+
+  &.phone {
+    background-image: url('../../assets/svg/phone.svg');
+  }
+}
