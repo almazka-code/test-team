@@ -5,6 +5,21 @@ import { RootState } from '../../redux/store';
 export const Profile: React.FC = () => {
   const { email } = useSelector((state: RootState) => state.card);
 
+  const contacts = [
+    {
+      name: 'phone',
+      personalClass: styles.phone,
+      href: 'tel:+79543334455',
+      text: '+7 (954) 333-44-55',
+    },
+    {
+      name: 'mail',
+      personalClass: styles.mail,
+      href: `mailto:${email}`,
+      text: email,
+    },
+  ];
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.text}>
@@ -30,18 +45,14 @@ export const Profile: React.FC = () => {
         </p>
       </div>
       <ul className={styles.contacts}>
-        <li className={styles.item}>
-          <div className={`${styles.icon} ${styles.phone}`}></div>
-          <a className={styles.info} href="tel:+79543334455">
-            +7 (954) 333-44-55
-          </a>
-        </li>
-        <li className={styles.item}>
-          <div className={`${styles.icon} ${styles.mail}`}></div>
-          <a className={styles.info} href={`mailto:${email}`}>
-            {email}
-          </a>
-        </li>
+        {contacts.map((contact) => (
+          <li key={contact.name} className={styles.item}>
+            <div className={`${styles.icon} ${contact.personalClass}`}></div>
+            <a className={styles.info} href={contact.href}>
+              {contact.text}
+            </a>
+          </li>
+        ))}
       </ul>
     </div>
   );
