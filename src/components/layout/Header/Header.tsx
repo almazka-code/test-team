@@ -1,19 +1,23 @@
 import { ProfileName } from '../../elements/ProfileName/ProfileName';
 import { Button } from '../../ui/Button/Button';
 import styles from './Header.module.scss';
+import { logout } from '../../../redux/slices/usersSlice';
 import { Link, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../redux/store';
 import { useNavigate } from 'react-router-dom';
+import { useAppDispatch } from '../../../redux/store';
 
 export const Header: React.FC = () => {
   const { firstName, lastName, avatar } = useSelector((state: RootState) => state.card);
 
   const location = useLocation();
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   const handleLogout = () => {
-    localStorage.clear();
+    dispatch(logout());
+    localStorage.removeItem('token');
     navigate('/');
   };
 

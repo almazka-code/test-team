@@ -8,7 +8,6 @@ interface PasswordInputFieldProps {
   togglePasswordVisibility: () => void;
   error?: string;
   register: React.InputHTMLAttributes<HTMLInputElement>;
-  hasValue: boolean;
 }
 
 export const PasswordInputField: React.FC<PasswordInputFieldProps> = ({
@@ -18,7 +17,6 @@ export const PasswordInputField: React.FC<PasswordInputFieldProps> = ({
   togglePasswordVisibility,
   error,
   register,
-  hasValue,
 }) => {
   return (
     <div className={styles.group}>
@@ -29,13 +27,12 @@ export const PasswordInputField: React.FC<PasswordInputFieldProps> = ({
         error={error}
         register={register}
       />
-      {hasValue && (
-        <button
-          type="button"
-          className={`${styles.eye} ${isPasswordVisible ? styles.on : styles.off}`}
-          onClick={togglePasswordVisibility}
-        ></button>
-      )}
+
+      <button
+        type="button"
+        className={`${styles.eye} ${isPasswordVisible ? styles.on : styles.off}`}
+        onClick={togglePasswordVisibility}
+      ></button>
     </div>
   );
 };

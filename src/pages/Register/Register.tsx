@@ -8,6 +8,7 @@ import {
   toggleShowPassword,
   toggleShowConfirmPassword,
 } from '../../redux/slices/passwordVisibility';
+import { registerUser } from '../../redux/slices/usersSlice';
 import { RootState } from '../../redux/store';
 import { InputField } from '../../components/ui/InputField/InputField';
 import { PasswordInputField } from '../../components/ui/PasswordInputField/PasswordInputField';
@@ -37,13 +38,14 @@ export const Register = () => {
     mode: 'all',
   });
 
-  const onSubmit = () => {
+  const onSubmit = async (data: FormData) => {
+    const { name, confirmPassword, ...registrationData } = data;
+    await dispatch(registerUser(registrationData));
     reset();
     navigate('/users');
   };
 
   const password = watch('password');
-  const confirmPassword = watch('confirmPassword');
 
   return (
     <div className={styles.wrapper}>
@@ -96,7 +98,6 @@ export const Register = () => {
                 message: 'Пароль должен быть не менее 6 символов',
               },
             })}
-            hasValue={!!password}
           />
 
           <PasswordInputField
@@ -109,7 +110,6 @@ export const Register = () => {
               required: 'Подтверждение пароля обязательно',
               validate: (value) => value === password || 'Пароли не совпадают',
             })}
-            hasValue={!!confirmPassword}
           />
         </div>
         <button className={styles.button} type="submit">
