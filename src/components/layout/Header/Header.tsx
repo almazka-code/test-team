@@ -4,11 +4,18 @@ import styles from './Header.module.scss';
 import { Link, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../redux/store';
+import { useNavigate } from 'react-router-dom';
 
 export const Header: React.FC = () => {
   const { firstName, lastName, avatar } = useSelector((state: RootState) => state.card);
 
   const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.clear();
+    navigate('/');
+  };
 
   return (
     <header className={styles.header}>
@@ -32,7 +39,7 @@ export const Header: React.FC = () => {
           <ProfileName firstName={firstName} lastName={lastName} post="Партнер" avatar={avatar} />
         )}
 
-        <Button className={styles.exit} text="Выход" />
+        <Button className={styles.exit} text="Выход" onClick={handleLogout} />
       </div>
     </header>
   );

@@ -2,6 +2,15 @@ import styles from './Register.module.scss';
 
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { useAppDispatch } from '../../redux/store';
+import {
+  toggleShowPassword,
+  toggleShowConfirmPassword,
+} from '../../redux/slices/passwordVisibility';
+import { RootState } from '../../redux/store';
+import { InputField } from '../../components/ui/InputField/InputField';
+import { PasswordInputField } from '../../components/ui/PasswordInputField/PasswordInputField';
 
 interface FormData {
   name: string;
@@ -12,53 +21,60 @@ interface FormData {
 
 export const Register = () => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
+  const { showPassword, showConfirmPassword } = useSelector(
+    (state: RootState) => state.passwordVisibility
+  );
 
   const {
     register,
     reset,
     watch,
-    formState: { errors, isValid },
+    formState: { errors },
     handleSubmit,
   } = useForm<FormData>({
-    mode: 'onBlur',
+    mode: 'all',
   });
 
-  const onSubmit = (data: FormData) => {
-    localStorage.setItem('user', JSON.stringify(data));
+  const onSubmit = () => {
     reset();
     navigate('/users');
   };
 
   const password = watch('password');
+  const confirmPassword = watch('confirmPassword');
 
   return (
     <div className={styles.wrapper}>
       <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
         <h2 className={styles.title}>Регистрация</h2>
-        <div className={styles.item}>
-          <label className={styles.label}>Имя</label>
-          <input
+
+        <div className={styles.flex}>
+          <InputField
+            label="Имя"
             type="text"
-            className={`${styles.input} ${errors.name ? styles.invalid : ''}`}
             placeholder="Артур"
-            {...register('name', {
+            error={errors.name?.message}
+            register={register('name', {
               required: 'Имя обязательно для заполнения',
+              pattern: {
+                value: /^[A-Za-zА-Яа-яЁё]+$/i,
+                message: 'Можно вводить только буквы',
+              },
               minLength: {
                 value: 3,
                 message: 'Минимум 3 символа',
               },
             })}
           />
-          <div className={styles.error}>{errors.name && <p>{errors.name.message}</p>}</div>
-        </div>
 
-        <div className={styles.item}>
-          <label className={styles.label}>Электронная почта</label>
-          <input
+          <InputField
+            label="Электронная почта"
             type="email"
-            className={`${styles.input} ${errors.email ? styles.invalid : ''}`}
             placeholder="example@mail.ru"
-            {...register('email', {
+            error={errors.email?.message}
+            register={register('email', {
               required: 'Email обязателен для заполнения',
               pattern: {
                 value: /\S+@\S+\.\S+/,
@@ -66,43 +82,37 @@ export const Register = () => {
               },
             })}
           />
-          <div className={styles.error}>{errors.email && <p>{errors.email.message}</p>}</div>
-        </div>
 
-        <div className={styles.item}>
-          <label className={styles.label}>Пароль</label>
-          <input
-            type="password"
-            className={`${styles.input} ${errors.password ? styles.invalid : ''}`}
+          <PasswordInputField
+            label="Пароль"
             placeholder="******"
-            {...register('password', {
+            isPasswordVisible={showPassword}
+            togglePasswordVisibility={() => dispatch(toggleShowPassword())}
+            error={errors.password?.message}
+            register={register('password', {
               required: 'Пароль обязателен для заполнения',
               minLength: {
                 value: 6,
                 message: 'Пароль должен быть не менее 6 символов',
               },
             })}
+            hasValue={!!password}
           />
-          <div className={styles.error}>{errors.password && <p>{errors.password.message}</p>}</div>
-        </div>
 
-        <div className={styles.item}>
-          <label className={styles.label}>Подтвердите пароль</label>
-          <input
-            type="password"
-            className={`${styles.input} ${errors.confirmPassword ? styles.invalid : ''}`}
+          <PasswordInputField
+            label="Подтвердите пароль"
             placeholder="******"
-            {...register('confirmPassword', {
+            isPasswordVisible={showConfirmPassword}
+            togglePasswordVisibility={() => dispatch(toggleShowConfirmPassword())}
+            error={errors.confirmPassword?.message}
+            register={register('confirmPassword', {
               required: 'Подтверждение пароля обязательно',
               validate: (value) => value === password || 'Пароли не совпадают',
             })}
+            hasValue={!!confirmPassword}
           />
-          <div className={styles.error}>
-            {errors.confirmPassword && <p>{errors.confirmPassword.message}</p>}
-          </div>
         </div>
-
-        <button className={styles.button} type="submit" disabled={!isValid}>
+        <button className={styles.button} type="submit">
           Зарегистрироваться
         </button>
       </form>
