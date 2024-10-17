@@ -1,11 +1,12 @@
 import styles from './InputField.module.scss';
+import { UseFormRegister } from 'react-hook-form';
 
 interface InputFieldProps {
   label: string;
   type: string;
   placeholder: string;
   error?: string;
-  register: React.InputHTMLAttributes<HTMLInputElement>;
+  register: ReturnType<UseFormRegister<any>>;
 }
 
 export const InputField: React.FC<InputFieldProps> = ({

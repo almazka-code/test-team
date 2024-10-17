@@ -1,5 +1,6 @@
 import { InputField } from '../InputField/InputField';
 import styles from './PasswordInputField.module.scss';
+import { UseFormRegister } from 'react-hook-form';
 
 interface PasswordInputFieldProps {
   label: string;
@@ -7,7 +8,7 @@ interface PasswordInputFieldProps {
   isPasswordVisible: boolean;
   togglePasswordVisibility: () => void;
   error?: string;
-  register: React.InputHTMLAttributes<HTMLInputElement>;
+  register: ReturnType<UseFormRegister<any>>;
 }
 
 export const PasswordInputField: React.FC<PasswordInputFieldProps> = ({
