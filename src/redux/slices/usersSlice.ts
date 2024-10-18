@@ -34,24 +34,10 @@ const initialState: UsersSliceState = {
   status: Status.LOADING,
 };
 
-interface UserData {
-  email: string;
-  password: string;
-}
-
 //Получение пользователей
 export const fetchUsers = createAsyncThunk('users/fetchUsers', async () => {
   const { data } = await axios.get<ApiResponse>('https://reqres.in/api/users?page=1&per_page=8');
   return data.data;
-});
-
-// Регистрация пользователя
-export const registerUser = createAsyncThunk('users/registerUser', async (userData: UserData) => {
-  const response = await axios.post('https://reqres.in/api/register', {
-    email: userData.email,
-    password: userData.password,
-  });
-  return response.data.token;
 });
 
 export const usersSlice = createSlice({
@@ -63,6 +49,7 @@ export const usersSlice = createSlice({
     },
     logout(state) {
       state.items = [];
+      localStorage.removeItem('token');
     },
   },
   extraReducers: (builder) => {
@@ -72,15 +59,12 @@ export const usersSlice = createSlice({
         state.items = [];
       })
       .addCase(fetchUsers.fulfilled, (state, action: PayloadAction<UserItem[]>) => {
-        state.items = action.payload;
         state.status = Status.SUCCESS;
+        state.items = action.payload;
       })
       .addCase(fetchUsers.rejected, (state) => {
         state.status = Status.ERROR;
         state.items = [];
-      })
-      .addCase(registerUser.fulfilled, (state, action: PayloadAction<string>) => {
-        localStorage.setItem('token', action.payload);
       });
   },
 });

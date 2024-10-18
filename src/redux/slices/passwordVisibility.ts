@@ -3,11 +3,13 @@ import { createSlice } from '@reduxjs/toolkit';
 interface PasswordVisibilityState {
   showPassword: boolean;
   showConfirmPassword: boolean;
+  showLoginPassword: boolean;
 }
 
 const initialState: PasswordVisibilityState = {
   showPassword: false,
   showConfirmPassword: false,
+  showLoginPassword: false,
 };
 
 const passwordVisibilitySlice = createSlice({
@@ -20,8 +22,12 @@ const passwordVisibilitySlice = createSlice({
     toggleShowConfirmPassword(state) {
       state.showConfirmPassword = !state.showConfirmPassword;
     },
+    toggleShowLoginPassword(state) {
+      state.showLoginPassword = !state.showLoginPassword;
+    },
   },
 });
 
-export const { toggleShowPassword, toggleShowConfirmPassword } = passwordVisibilitySlice.actions;
+export const { toggleShowPassword, toggleShowConfirmPassword, toggleShowLoginPassword } =
+  passwordVisibilitySlice.actions;
 export default passwordVisibilitySlice.reducer;

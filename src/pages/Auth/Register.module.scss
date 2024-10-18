@@ -14,10 +14,14 @@
   flex-direction: column;
   gap: 15px;
   width: 500px;
-  height: 519px;
+  height: 540px;
   border-radius: 16px;
   padding: 16px;
   box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.08);
+
+  &.login {
+    height: 350px;
+  }
 }
 
 .title {
@@ -45,5 +49,21 @@
 
   &:hover {
     filter: brightness(1.35);
+  }
+}
+
+.info {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  justify-content: center;
+}
+
+.link {
+  font-weight: 700;
+  text-decoration-line: underline;
+
+  &:hover {
+    color: $color-primary;
   }
 }

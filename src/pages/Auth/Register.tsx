@@ -4,16 +4,17 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../../redux/store';
+import { Link } from 'react-router-dom';
 import {
   toggleShowPassword,
   toggleShowConfirmPassword,
 } from '../../redux/slices/passwordVisibility';
-import { registerUser } from '../../redux/slices/usersSlice';
+import { registerUser } from '../../redux/slices/registerSlice';
 import { RootState } from '../../redux/store';
 import { InputField } from '../../components/ui/InputField/InputField';
 import { PasswordInputField } from '../../components/ui/PasswordInputField/PasswordInputField';
 
-interface FormData {
+interface RegisterFormData {
   name: string;
   email: string;
   password: string;
@@ -34,15 +35,20 @@ export const Register = () => {
     watch,
     formState: { errors },
     handleSubmit,
-  } = useForm<FormData>({
+  } = useForm<RegisterFormData>({
     mode: 'all',
   });
 
-  const onSubmit = async (data: FormData) => {
+  const onSubmit = async (data: RegisterFormData) => {
     const { name, confirmPassword, ...registrationData } = data;
-    await dispatch(registerUser(registrationData));
-    reset();
-    navigate('/users');
+    const resultAction = await dispatch(registerUser(registrationData));
+
+    if (registerUser.fulfilled.match(resultAction)) {
+      reset();
+      navigate('/users');
+    } else {
+      alert('Ошибка регистрации');
+    }
   };
 
   const password = watch('password');
@@ -94,8 +100,8 @@ export const Register = () => {
             register={register('password', {
               required: 'Пароль обязателен для заполнения',
               minLength: {
-                value: 6,
-                message: 'Пароль должен быть не менее 6 символов',
+                value: 8,
+                message: 'Пароль должен быть не менее 8 символов',
               },
             })}
           />
@@ -115,6 +121,12 @@ export const Register = () => {
         <button className={styles.button} type="submit">
           Зарегистрироваться
         </button>
+        <div className={styles.info}>
+          <p>Уже есть аккаунт?</p>
+          <Link to="/login" className={styles.link}>
+            Войти
+          </Link>
+        </div>
       </form>
     </div>
   );
