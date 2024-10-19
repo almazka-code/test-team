@@ -8,8 +8,7 @@ import { RootState } from '../../../redux/store';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../../redux/store';
 import { IconButton } from '../../ui/IconButton/IconButton';
-import { setScreen } from '../../../redux/slices/screenSlice';
-import { useEffect } from 'react';
+import { useWindowSize } from '../../../hooks/useWindowSize';
 
 export const Header: React.FC = () => {
   const { firstName, lastName, avatar } = useSelector((state: RootState) => state.card);
@@ -17,6 +16,7 @@ export const Header: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const { width } = useWindowSize();
 
   //выход
   const handleLogout = () => {
@@ -25,27 +25,13 @@ export const Header: React.FC = () => {
     navigate('/');
   };
 
-  //для отображения кнопки выхода и назад в зависимости от ширины экрана
-  const screen = useSelector((state: RootState) => state.screen.screen);
-
-  const resize = () => {
-    dispatch(setScreen(window.innerWidth > 768));
-  };
-
-  useEffect(() => {
-    window.addEventListener('resize', resize);
-    return () => {
-      window.removeEventListener('resize', resize);
-    };
-  }, [dispatch]);
-
   return (
     <header className={styles.header}>
       <div className={styles.wrapper}>
         <div className={styles.back}>
           {location.pathname !== '/users' && (
             <Link to="/users">
-              {screen ? <Button text="Назад" /> : <IconButton className={styles.backButton} />}
+              {width > 768 ? <Button text="Назад" /> : <IconButton className={styles.backButton} />}
             </Link>
           )}
         </div>
@@ -64,7 +50,7 @@ export const Header: React.FC = () => {
         )}
 
         <div className={styles.exit}>
-          {screen ? (
+          {width > 768 ? (
             <Button text="Выход" onClick={handleLogout} />
           ) : (
             <IconButton className={styles.exitButton} onClick={handleLogout} />

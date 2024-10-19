@@ -21,7 +21,7 @@ export const Login = () => {
   const dispatch = useAppDispatch();
 
   const loginPassword = useSelector(
-    (state: RootState) => state.passwordVisibility.showLoginPassword
+    (state: RootState) => state.passwordVisibility.showLoginPassword,
   );
 
   const {

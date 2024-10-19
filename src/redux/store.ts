@@ -5,7 +5,6 @@ import card from './slices/cardSlice';
 import passwordVisibility from './slices/passwordVisibility';
 import login from './slices/loginSlice';
 import register from './slices/registerSlice';
-import screen from './slices/screenSlice';
 
 export const store = configureStore({
   reducer: {
@@ -14,7 +13,6 @@ export const store = configureStore({
     passwordVisibility,
     login,
     register,
-    screen,
   },
 });
 
