@@ -7,6 +7,10 @@
   align-items: center;
   height: 100%;
   width: 100%;
+
+  @media (max-width: 576px) {
+    padding: 0;
+  }
 }
 
 .form {
@@ -14,13 +18,17 @@
   flex-direction: column;
   gap: 15px;
   width: 500px;
-  height: 540px;
+  height: 550px;
   border-radius: 16px;
   padding: 16px;
   box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.08);
 
   &.login {
     height: 350px;
+  }
+
+  @media (max-width: 576px) {
+    gap: 12px;
   }
 }
 
@@ -43,7 +51,7 @@
   background-color: $color-primary;
   border: 1px solid $color-background;
   border-radius: 8px;
-  padding: 8px 12px;
+  padding: 15px 12px;
   color: $color-light;
   @extend %transition;
 

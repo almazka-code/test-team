@@ -7,6 +7,9 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../../redux/store';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../../redux/store';
+import { IconButton } from '../../ui/IconButton/IconButton';
+import { setScreen } from '../../../redux/slices/screenSlice';
+import { useEffect } from 'react';
 
 export const Header: React.FC = () => {
   const { firstName, lastName, avatar } = useSelector((state: RootState) => state.card);
@@ -15,20 +18,37 @@ export const Header: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
+  //выход
   const handleLogout = () => {
     dispatch(logout());
     localStorage.removeItem('token');
     navigate('/');
   };
 
+  //для отображения кнопки выхода и назад в зависимости от ширины экрана
+  const screen = useSelector((state: RootState) => state.screen.screen);
+
+  const resize = () => {
+    dispatch(setScreen(window.innerWidth > 768));
+  };
+
+  useEffect(() => {
+    window.addEventListener('resize', resize);
+    return () => {
+      window.removeEventListener('resize', resize);
+    };
+  }, [dispatch]);
+
   return (
     <header className={styles.header}>
       <div className={styles.wrapper}>
-        {location.pathname !== '/users' && (
-          <Link to="./users">
-            <Button className={styles.back} text="Назад" />
-          </Link>
-        )}
+        <div className={styles.back}>
+          {location.pathname !== '/users' && (
+            <Link to="/users">
+              {screen ? <Button text="Назад" /> : <IconButton className={styles.backButton} />}
+            </Link>
+          )}
+        </div>
         {location.pathname !== '/profile' && (
           <div className={styles.content}>
             <h2 className={styles.title}>Наша команда</h2>
@@ -43,7 +63,13 @@ export const Header: React.FC = () => {
           <ProfileName firstName={firstName} lastName={lastName} post="Партнер" avatar={avatar} />
         )}
 
-        <Button className={styles.exit} text="Выход" onClick={handleLogout} />
+        <div className={styles.exit}>
+          {screen ? (
+            <Button text="Выход" onClick={handleLogout} />
+          ) : (
+            <IconButton className={styles.exitButton} onClick={handleLogout} />
+          )}
+        </div>
       </div>
     </header>
   );

@@ -8,33 +8,87 @@
   display: flex;
   @extend %container;
   padding-top: 32px;
-  padding-bottom: 45px;
+  padding-bottom: 43px;
+  gap: 10px;
+  position: relative;
+
+  @media (max-width: 576px) {
+    padding: 25px;
+    padding-bottom: 43px;
+    justify-content: center;
+  }
 }
 
 .content {
   text-align: center;
-  max-width: 980px;
+  max-width: 835px;
   padding-top: 25px;
-  padding-left: 150px;
   padding-bottom: 20px;
   margin: 0 auto;
   color: $color-light;
   line-height: 150%;
+
+  @media (max-width: 576px) {
+    padding-top: 35px;
+    line-height: 125%;
+  }
 }
 
 .title {
   @extend %main-title;
   margin-bottom: 10px;
+
+  @media (max-width: 992px) {
+    font-size: 36px;
+  }
 }
 
 .text {
   font-size: 20px;
+
+  @media (max-width: 992px) {
+    font-size: 16px;
+  }
 }
 
 .exit {
-  margin-left: auto;
+  position: absolute;
+  right: 80px;
+  top: 30px;
+
+  @media (max-width: 1024px) {
+    right: 50px;
+  }
+
+  @media (max-width: 576px) {
+    right: 25px;
+    top: 25px;
+  }
 }
 
 .back {
-  margin-right: 25px;
+  position: absolute;
+  left: 80px;
+  top: 30px;
+
+  @media (max-width: 1024px) {
+    left: 50px;
+  }
+
+  @media (max-width: 576px) {
+    left: 25px;
+    top: 25px;
+  }
+}
+
+.exitButton {
+  min-width: 18px;
+  height: 18px;
+  background-image: url('../../../assets/svg/exit.svg');
+}
+
+.backButton {
+  min-width: 7px;
+  height: 14px;
+  background-image: url('../../../assets/svg/back.svg');
 }
