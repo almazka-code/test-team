@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../../redux/store';
-import { toggleShowLoginPassword } from '../../redux/slices/passwordVisibility';
+import { setShowLoginPassword } from '../../redux/slices/passwordVisibility';
 import { loginUser } from '../../redux/slices/loginSlice';
 import { RootState } from '../../redux/store';
 import { InputField } from '../../components/ui/InputField/InputField';
@@ -68,7 +68,7 @@ export const Login = () => {
             label="Пароль"
             placeholder="******"
             isPasswordVisible={loginPassword}
-            togglePasswordVisibility={() => dispatch(toggleShowLoginPassword())}
+            togglePasswordVisibility={() => dispatch(setShowLoginPassword())}
             error={errors.password?.message}
             register={register('password', {
               required: 'Пароль обязателен для заполнения',

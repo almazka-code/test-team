@@ -10,6 +10,7 @@ type Info = {
 interface CardState {
   info: Info;
   count: number;
+  likes: { [key: number]: boolean };
 }
 
 const initialState: CardState = {
@@ -20,6 +21,7 @@ const initialState: CardState = {
     email: '',
   },
   count: 8,
+  likes: {},
 };
 
 const cardSlice = createSlice({
@@ -32,8 +34,12 @@ const cardSlice = createSlice({
     setCount(state, action: PayloadAction<number>) {
       state.count = action.payload;
     },
+    setLike(state, action: PayloadAction<number>) {
+      const id = action.payload;
+      state.likes[id] = !state.likes[id];
+    },
   },
 });
 
-export const { setInfo, setCount } = cardSlice.actions;
+export const { setInfo, setCount, setLike } = cardSlice.actions;
 export default cardSlice.reducer;

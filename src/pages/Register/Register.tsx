@@ -5,10 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../../redux/store';
 import { Link } from 'react-router-dom';
-import {
-  toggleShowPassword,
-  toggleShowConfirmPassword,
-} from '../../redux/slices/passwordVisibility';
+import { setShowPassword, setShowConfirmPassword } from '../../redux/slices/passwordVisibility';
 import { registerUser } from '../../redux/slices/registerSlice';
 import { RootState } from '../../redux/store';
 import { InputField } from '../../components/ui/InputField/InputField';
@@ -26,7 +23,7 @@ export const Register = () => {
   const dispatch = useAppDispatch();
 
   const { showPassword, showConfirmPassword } = useSelector(
-    (state: RootState) => state.passwordVisibility
+    (state: RootState) => state.passwordVisibility,
   );
 
   const {
@@ -95,7 +92,7 @@ export const Register = () => {
             label="Пароль"
             placeholder="******"
             isPasswordVisible={showPassword}
-            togglePasswordVisibility={() => dispatch(toggleShowPassword())}
+            togglePasswordVisibility={() => dispatch(setShowPassword())}
             error={errors.password?.message}
             register={register('password', {
               required: 'Пароль обязателен для заполнения',
@@ -110,11 +107,11 @@ export const Register = () => {
             label="Подтвердите пароль"
             placeholder="******"
             isPasswordVisible={showConfirmPassword}
-            togglePasswordVisibility={() => dispatch(toggleShowConfirmPassword())}
+            togglePasswordVisibility={() => dispatch(setShowConfirmPassword())}
             error={errors.confirmPassword?.message}
             register={register('confirmPassword', {
               required: 'Подтверждение пароля обязательно',
-              validate: value => value === password || 'Пароли не совпадают',
+              validate: (value) => value === password || 'Пароли не совпадают',
             })}
           />
         </div>

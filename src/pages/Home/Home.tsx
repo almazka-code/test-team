@@ -35,9 +35,10 @@ export const Home: React.FC = () => {
       {/* {status === 'loading' && <Skeleton />} */}
       {status === 'success' && (
         <ul className={styles.grid}>
-          {items.slice(0, count).map(user => (
+          {items.slice(0, count).map((user) => (
             <Card
               key={user.id}
+              id={user.id}
               firstName={user.first_name}
               lastName={user.last_name}
               avatar={user.avatar}

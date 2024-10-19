@@ -16,18 +16,18 @@ const passwordVisibilitySlice = createSlice({
   name: 'passwordVisibility',
   initialState,
   reducers: {
-    toggleShowPassword(state) {
+    setShowPassword(state) {
       state.showPassword = !state.showPassword;
     },
-    toggleShowConfirmPassword(state) {
+    setShowConfirmPassword(state) {
       state.showConfirmPassword = !state.showConfirmPassword;
     },
-    toggleShowLoginPassword(state) {
+    setShowLoginPassword(state) {
       state.showLoginPassword = !state.showLoginPassword;
     },
   },
 });
 
-export const { toggleShowPassword, toggleShowConfirmPassword, toggleShowLoginPassword } =
+export const { setShowPassword, setShowConfirmPassword, setShowLoginPassword } =
   passwordVisibilitySlice.actions;
 export default passwordVisibilitySlice.reducer;

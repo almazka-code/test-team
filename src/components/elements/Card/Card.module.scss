@@ -1,5 +1,9 @@
 @import '../../../styles/glodal.scss';
 
+.item {
+  position: relative;
+}
+
 .card {
   display: flex;
   flex-direction: column;
@@ -32,4 +36,32 @@
 .name {
   font-size: 20px;
   white-space: nowrap;
+}
+
+.like {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  width: 30px;
+  height: 30px;
+  border-radius: 4px;
+  background-color: $color-background;
+  @extend %transition;
+
+  &::before {
+    content: '';
+    display: inline-block;
+    width: 16px;
+    height: 14px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url('../../../assets/svg/like.svg');
+  }
+}
+
+.liked {
+  &::before {
+    background-image: url('../../../assets/svg/liked.svg');
+  }
 }
