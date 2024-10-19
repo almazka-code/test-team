@@ -33,7 +33,7 @@ const registerSlice = createSlice({
         state.status = Status.SUCCESS;
         localStorage.setItem('token', action.payload);
       })
-      .addCase(registerUser.rejected, (state, action) => {
+      .addCase(registerUser.rejected, (state) => {
         state.status = Status.ERROR;
       });
   },

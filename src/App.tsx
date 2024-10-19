@@ -4,8 +4,8 @@ import './styles/main.scss';
 import { Header } from './components/layout/Header/Header';
 import { Home } from './pages/Home/Home';
 import { Profile } from './pages/Profile/Profile';
-import { Register } from './pages/Auth/Register';
-import { Login } from './pages/Auth/Login';
+import { Register } from './pages/Register/Register';
+import { Login } from './pages/Register/Login';
 
 function App() {
   const location = useLocation();

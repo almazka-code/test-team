@@ -1,32 +1,39 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-interface CardState {
+type Info = {
   firstName: string;
   lastName: string;
   avatar: string;
   email: string;
+};
+
+interface CardState {
+  info: Info;
+  count: number;
 }
 
 const initialState: CardState = {
-  firstName: '',
-  lastName: '',
-  avatar: '',
-  email: '',
+  info: {
+    firstName: '',
+    lastName: '',
+    avatar: '',
+    email: '',
+  },
+  count: 8,
 };
 
 const cardSlice = createSlice({
   name: 'card',
   initialState,
   reducers: {
-    setCard: (state, action: PayloadAction<CardState>) => {
-      // state.firstName = action.payload.firstName;
-      // state.lastName = action.payload.lastName;
-      // state.avatar = action.payload.avatar;
-      // state.email = action.payload.email;
-      return { ...action.payload };
+    setInfo: (state, action: PayloadAction<Info>) => {
+      state.info = { ...state.info, ...action.payload };
+    },
+    setCount(state, action: PayloadAction<number>) {
+      state.count = action.payload;
     },
   },
 });
 
-export const { setCard } = cardSlice.actions;
+export const { setInfo, setCount } = cardSlice.actions;
 export default cardSlice.reducer;

@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 
 export const Profile: React.FC = () => {
-  const { email } = useSelector((state: RootState) => state.card);
+  const { email } = useSelector((state: RootState) => state.card.info);
 
   const contacts = [
     {

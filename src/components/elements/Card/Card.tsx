@@ -2,7 +2,7 @@ import styles from './Card.module.scss';
 
 import { Link } from 'react-router-dom';
 import { useAppDispatch } from '../../../redux/store';
-import { setCard } from '../../../redux/slices/cardSlice';
+import { setInfo } from '../../../redux/slices/cardSlice';
 
 type CardProps = {
   firstName: string;
@@ -15,7 +15,7 @@ export const Card: React.FC<CardProps> = ({ firstName, lastName, avatar, email }
   const dispatch = useAppDispatch();
 
   const onClickCard = () => {
-    dispatch(setCard({ firstName, lastName, avatar, email }));
+    dispatch(setInfo({ firstName, lastName, avatar, email }));
   };
 
   return (

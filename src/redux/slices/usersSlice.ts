@@ -36,7 +36,7 @@ const initialState: UsersSliceState = {
 
 //Получение пользователей
 export const fetchUsers = createAsyncThunk('users/fetchUsers', async () => {
-  const { data } = await axios.get<ApiResponse>('https://reqres.in/api/users?page=1&per_page=8');
+  const { data } = await axios.get<ApiResponse>('https://reqres.in/api/users?page=1&per_page=12');
   return data.data;
 });
 

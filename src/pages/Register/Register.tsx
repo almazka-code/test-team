@@ -114,7 +114,7 @@ export const Register = () => {
             error={errors.confirmPassword?.message}
             register={register('confirmPassword', {
               required: 'Подтверждение пароля обязательно',
-              validate: (value) => value === password || 'Пароли не совпадают',
+              validate: value => value === password || 'Пароли не совпадают',
             })}
           />
         </div>

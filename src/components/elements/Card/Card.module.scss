@@ -12,8 +12,10 @@
   border: 1px solid $color-background;
   @extend %transition;
 
-  &:hover {
-    border: 1px solid $color-dark;
+  @media (hover: hover) {
+    &:hover {
+      border: 1px solid $color-dark;
+    }
   }
 }
 

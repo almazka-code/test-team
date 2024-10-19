@@ -1,13 +1,54 @@
 @import '../../styles/glodal.scss';
 
-.grid {
+.wrapper {
   @extend %container;
+  text-align: center;
+}
+
+.grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, 305px);
   gap: 20px;
   justify-content: center;
+  margin-bottom: 55px;
+
+  @media (max-width: 768px) {
+    margin-bottom: 30px;
+  }
 }
 
 .title {
   @extend %hidden;
+}
+
+.button {
+  button {
+    min-width: 170px;
+    border-color: $color-dark;
+    color: $color-dark;
+
+    &::after {
+      content: '';
+      display: inline-block;
+      width: 17px;
+      height: 9px;
+      margin-left: 15px;
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-image: url('../../assets/svg/arrow.svg');
+      @extend %transition;
+    }
+
+    @media (hover: hover) {
+      &:hover {
+        background-color: $color-primary;
+        color: $color-light;
+
+        &::after {
+          filter: brightness(10) contrast(100);
+        }
+      }
+    }
+  }
 }

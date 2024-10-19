@@ -55,8 +55,10 @@
   color: $color-light;
   @extend %transition;
 
-  &:hover {
-    filter: brightness(1.35);
+  @media (hover: hover) {
+    &:hover {
+      filter: brightness(1.35);
+    }
   }
 }
 
@@ -71,7 +73,9 @@
   font-weight: 700;
   text-decoration-line: underline;
 
-  &:hover {
-    color: $color-primary;
+  @media (hover: hover) {
+    &:hover {
+      color: $color-primary;
+    }
   }
 }

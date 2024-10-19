@@ -11,7 +11,7 @@ import { IconButton } from '../../ui/IconButton/IconButton';
 import { useWindowSize } from '../../../hooks/useWindowSize';
 
 export const Header: React.FC = () => {
-  const { firstName, lastName, avatar } = useSelector((state: RootState) => state.card);
+  const { firstName, lastName, avatar } = useSelector((state: RootState) => state.card.info);
 
   const location = useLocation();
   const navigate = useNavigate();
