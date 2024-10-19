@@ -1,12 +1,13 @@
 import styles from './Card.module.scss';
 
 import { Link } from 'react-router-dom';
-import { useAppDispatch } from '../../../redux/store';
-import { setInfo } from '../../../redux/slices/cardSlice';
-import { IconButton } from '../../ui/IconButton/IconButton';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../redux/store';
+import { useAppDispatch } from '../../../redux/store';
+
+import { setInfo } from '../../../redux/slices/cardSlice';
 import { setLike } from '../../../redux/slices/cardSlice';
+import { IconButton } from '../../ui/IconButton/IconButton';
 
 type CardProps = {
   id: number;

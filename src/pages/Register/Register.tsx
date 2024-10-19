@@ -5,9 +5,11 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../../redux/store';
 import { Link } from 'react-router-dom';
+
 import { setShowPassword, setShowConfirmPassword } from '../../redux/slices/passwordVisibility';
 import { registerUser } from '../../redux/slices/registerSlice';
 import { RootState } from '../../redux/store';
+
 import { InputField } from '../../components/ui/InputField/InputField';
 import { PasswordInputField } from '../../components/ui/PasswordInputField/PasswordInputField';
 
@@ -18,7 +20,7 @@ interface RegisterFormData {
   confirmPassword: string;
 }
 
-export const Register = () => {
+export const Register: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 

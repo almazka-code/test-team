@@ -1,13 +1,15 @@
 import styles from './Home.module.scss';
+
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { useAppDispatch } from '../../redux/store';
-import { fetchUsers, usersSelector } from '../../redux/slices/usersSlice';
 import { RootState } from '../../redux/store';
+import { useAppDispatch } from '../../redux/store';
+
+import { fetchUsers, usersSelector } from '../../redux/slices/usersSlice';
+import { setCount } from '../../redux/slices/cardSlice';
 import { useWindowSize } from '../../hooks/useWindowSize';
 
 import { Card } from '../../components/elements/Card/Card';
-import { setCount } from '../../redux/slices/cardSlice';
 import { Button } from '../../components/ui/Button/Button';
 
 export const Home: React.FC = () => {
@@ -50,7 +52,7 @@ export const Home: React.FC = () => {
 
       {count < items.length && (
         <div className={styles.button}>
-          <Button text="Показать еще" onClick={showMore}></Button>
+          <Button text="Показать еще" onClick={showMore} />
         </div>
       )}
     </div>

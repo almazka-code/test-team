@@ -1,22 +1,24 @@
 import styles from './Register.module.scss';
 
 import { useForm } from 'react-hook-form';
+import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { RootState } from '../../redux/store';
 import { useAppDispatch } from '../../redux/store';
+
 import { setShowLoginPassword } from '../../redux/slices/passwordVisibility';
 import { loginUser } from '../../redux/slices/loginSlice';
-import { RootState } from '../../redux/store';
+
 import { InputField } from '../../components/ui/InputField/InputField';
 import { PasswordInputField } from '../../components/ui/PasswordInputField/PasswordInputField';
-import { Link } from 'react-router-dom';
 
 interface LoginFormData {
   email: string;
   password: string;
 }
 
-export const Login = () => {
+export const Login: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 

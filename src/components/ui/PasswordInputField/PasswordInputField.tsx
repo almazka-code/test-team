@@ -1,6 +1,6 @@
-import { InputField } from '../InputField/InputField';
 import styles from './PasswordInputField.module.scss';
 import { UseFormRegister } from 'react-hook-form';
+import { InputField } from '../InputField/InputField';
 
 interface PasswordInputFieldProps {
   label: string;

@@ -1,14 +1,17 @@
-import { ProfileName } from '../../elements/ProfileName/ProfileName';
-import { Button } from '../../ui/Button/Button';
 import styles from './Header.module.scss';
-import { logout } from '../../../redux/slices/usersSlice';
+
 import { Link, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../redux/store';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../../redux/store';
-import { IconButton } from '../../ui/IconButton/IconButton';
+
 import { useWindowSize } from '../../../hooks/useWindowSize';
+import { logout } from '../../../redux/slices/usersSlice';
+
+import { Button } from '../../ui/Button/Button';
+import { IconButton } from '../../ui/IconButton/IconButton';
+import { ProfileName } from '../../elements/ProfileName/ProfileName';
 
 export const Header: React.FC = () => {
   const { firstName, lastName, avatar } = useSelector((state: RootState) => state.card.info);
