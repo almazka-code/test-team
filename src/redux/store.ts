@@ -2,7 +2,7 @@ import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux';
 import users from './slices/usersSlice';
 import card from './slices/cardSlice';
-import passwordVisibility from './slices/passwordVisibility';
+import password from './slices/passwordSlice';
 import login from './slices/loginSlice';
 import register from './slices/registerSlice';
 import {
@@ -20,7 +20,7 @@ import storage from 'redux-persist/lib/storage';
 const rootReducer = combineReducers({
   users,
   card,
-  passwordVisibility,
+  password,
   login,
   register,
 });

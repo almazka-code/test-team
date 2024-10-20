@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { useAppDispatch } from '../../redux/store';
 
-import { setShowLoginPassword } from '../../redux/slices/passwordVisibility';
+import { setShowLoginPassword } from '../../redux/slices/passwordSlice';
 import { loginUser } from '../../redux/slices/loginSlice';
 
 import { InputField } from '../../components/ui/InputField/InputField';
@@ -22,9 +22,7 @@ export const Login: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
-  const loginPassword = useSelector(
-    (state: RootState) => state.passwordVisibility.showLoginPassword,
-  );
+  const loginPassword = useSelector((state: RootState) => state.password.showLoginPassword);
 
   const {
     register,

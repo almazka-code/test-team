@@ -8,6 +8,7 @@ import { useAppDispatch } from '../../../redux/store';
 
 import { useWindowSize } from '../../../hooks/useWindowSize';
 import { logout } from '../../../redux/slices/usersSlice';
+import { resetPasswordVisibility } from '../../../redux/slices/passwordSlice';
 
 import { Button } from '../../ui/Button/Button';
 import { IconButton } from '../../ui/IconButton/IconButton';
@@ -24,6 +25,7 @@ export const Header: React.FC = () => {
   //выход
   const handleLogout = () => {
     dispatch(logout());
+    dispatch(resetPasswordVisibility());
     localStorage.removeItem('token');
     navigate('/');
   };

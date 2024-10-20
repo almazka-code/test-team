@@ -1,19 +1,19 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-interface PasswordVisibilityState {
+interface PasswordState {
   showPassword: boolean;
   showConfirmPassword: boolean;
   showLoginPassword: boolean;
 }
 
-const initialState: PasswordVisibilityState = {
+const initialState: PasswordState = {
   showPassword: false,
   showConfirmPassword: false,
   showLoginPassword: false,
 };
 
-const passwordVisibilitySlice = createSlice({
-  name: 'passwordVisibility',
+const passwordSlice = createSlice({
+  name: 'password',
   initialState,
   reducers: {
     setShowPassword(state) {
@@ -25,9 +25,18 @@ const passwordVisibilitySlice = createSlice({
     setShowLoginPassword(state) {
       state.showLoginPassword = !state.showLoginPassword;
     },
+    resetPasswordVisibility(state) {
+      state.showPassword = false;
+      state.showConfirmPassword = false;
+      state.showLoginPassword = false;
+    },
   },
 });
 
-export const { setShowPassword, setShowConfirmPassword, setShowLoginPassword } =
-  passwordVisibilitySlice.actions;
-export default passwordVisibilitySlice.reducer;
+export const {
+  setShowPassword,
+  setShowConfirmPassword,
+  setShowLoginPassword,
+  resetPasswordVisibility,
+} = passwordSlice.actions;
+export default passwordSlice.reducer;

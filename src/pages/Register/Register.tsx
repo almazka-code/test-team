@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../../redux/store';
 import { Link } from 'react-router-dom';
 
-import { setShowPassword, setShowConfirmPassword } from '../../redux/slices/passwordVisibility';
+import { setShowPassword, setShowConfirmPassword } from '../../redux/slices/passwordSlice';
 import { registerUser } from '../../redux/slices/registerSlice';
 import { RootState } from '../../redux/store';
 
@@ -24,9 +24,7 @@ export const Register: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
-  const { showPassword, showConfirmPassword } = useSelector(
-    (state: RootState) => state.passwordVisibility,
-  );
+  const { showPassword, showConfirmPassword } = useSelector((state: RootState) => state.password);
 
   const {
     register,
