@@ -18,7 +18,7 @@
 
 ## Ссылка на приложение
 
-Проект доступен по ссылке https://test-team-three.vercel.app/
+Проект доступен по ссылке https://test-team-sigma.vercel.app
 
 ## Технологии и инструменты
 
